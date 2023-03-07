@@ -1,5 +1,4 @@
-'use strict';
-
+/* eslint-disable no-shadow */
 const Invoices = (sequelize, DataTypes) => {
   const Invoices = sequelize.define('Invoices', {
     name: DataTypes.STRING,
@@ -9,17 +8,17 @@ const Invoices = (sequelize, DataTypes) => {
   }, {
     underscored: true,
     tableName: 'invoices',
-    updatedAt: false
+    updatedAt: false,
   });
 
   Invoices.associate = (models) => {
     Invoices.belongsTo(models.Payments, {
       as: 'payments',
       foreignKey: 'paymentId',
-    })
-  }
+    });
+  };
 
-  return Invoices
-}
+  return Invoices;
+};
 
-module.exports = Invoices
+module.exports = Invoices;

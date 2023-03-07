@@ -5,7 +5,7 @@ const cors = require('cors');
 const paymentRoutes = require('./routes/payment.routes');
 const errorMiddleware = require('./middlewares/error.middleware');
 
-const app = express()
+const app = express();
 
 app.use(express.json());
 app.use(helmet());

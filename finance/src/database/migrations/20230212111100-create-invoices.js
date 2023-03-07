@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-unused-vars */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,34 +7,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       cpf: {
-        type: Sequelize.BIGINT
+        type: Sequelize.BIGINT,
       },
       payment_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'payments',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       description: {
-        type: Sequelize.JSON
+        type: Sequelize.JSON,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         field: 'created_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('invoices');
-  }
+  },
 };

@@ -1,5 +1,4 @@
-'use strict';
-// FLOAT -> DECIMAL(10, 2)
+/* eslint-disable no-shadow */
 // Validar credit card
 const Payments = (sequelize, DataTypes) => {
   const Payments = sequelize.define('Payments', {
@@ -19,11 +18,11 @@ const Payments = (sequelize, DataTypes) => {
   Payments.associate = (models) => {
     Payments.hasOne(models.Invoices, {
       as: 'invoices',
-      foreignKey: 'payment_id'
-    })
-  }
+      foreignKey: 'payment_id',
+    });
+  };
 
-  return Payments
-}
+  return Payments;
+};
 
-module.exports = Payments
+module.exports = Payments;

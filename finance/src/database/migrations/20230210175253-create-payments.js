@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-unused-vars */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -30,16 +30,16 @@ module.exports = {
       status: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "CREATED",
+        defaultValue: 'CREATED',
       },
       transactDate: {
         type: Sequelize.DATE,
         field: 'transact_date',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('payments');
-  }
+  },
 };

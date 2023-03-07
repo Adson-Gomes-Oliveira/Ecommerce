@@ -4,7 +4,7 @@ const customError = require('../helpers/error.custom');
 
 const payloadValidation = (payload) => {
   const { error } = JOI.object({
-    value: JOI.string().required(),
+    value: JOI.number().required(),
     buyerName: JOI.string().required(),
     cardNumber: JOI.string().required(),
     expirationDate: JOI.date().required(),
@@ -13,7 +13,7 @@ const payloadValidation = (payload) => {
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
   return null;
-}
+};
 
 const confirmPaymentValidation = (payload) => {
   const { error } = JOI.object({
@@ -26,7 +26,8 @@ const confirmPaymentValidation = (payload) => {
         number: JOI.string().required(),
         cep: JOI.string().required(), // trocar para string
         city: JOI.string().required(),
-        state: JOI.string().min(2).max(2).pattern(new RegExp('^(AC|AL|AM|AP|BA|CE|DF|ES|GO|MA|MG|MS|MT|PA|PB|PE|PI|PR|RJ|RN|RO|RR|RS|SC|SE|SP|TO)$')).required(),
+        state: JOI.string().min(2).max(2).pattern(/^(AC|AL|AM|AP|BA|CE|DF|ES|GO|MA|MG|MS|MT|PA|PB|PE|PI|PR|RJ|RN|RO|RR|RS|SC|SE|SP|TO)$/)
+          .required(),
       },
       ordersList: JOI.array().items(JOI.object({
         product: JOI.string().required(),
@@ -37,9 +38,9 @@ const confirmPaymentValidation = (payload) => {
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
-}
+};
 
 module.exports = {
   payloadValidation,
   confirmPaymentValidation,
-}
+};

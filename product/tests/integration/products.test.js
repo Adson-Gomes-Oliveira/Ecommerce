@@ -7,7 +7,7 @@ const {
   PRODUCT_MOCK_INSTANCE,
   PRODUCT_MOCK_PAYLOAD,
   PRODUCT_ORDER_MOCK_PAYLOAD,
-} = require('../mocks/products');
+} = require('../mocks/products.mock');
 
 describe('Testing products CRUD', () => {
   beforeAll(async () => {
@@ -39,7 +39,7 @@ describe('Testing products CRUD', () => {
       .expect(HTTPStatus.CREATED);
 
     expect(response.body).toHaveProperty('_id');
-    expect(response.body).toHaveProperty('category_id');
+    expect(response.body).toHaveProperty('category');
     delete response.body._id;
     expect(response.body).toEqual(PRODUCT_MOCK_PAYLOAD);
   });
@@ -82,7 +82,7 @@ describe('Testing products CRUD', () => {
       .expect(HTTPStatus.OK);
 
     expect(responsePut.body).toHaveProperty('_id');
-    expect(responsePut.body).toHaveProperty('category_id');
+    expect(responsePut.body).toHaveProperty('category');
     delete responsePut.body._id;
     expect(responsePut.body).toEqual(NEW_PRODUCT_MOCK_PAYLOAD);
   });

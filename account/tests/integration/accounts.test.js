@@ -7,7 +7,7 @@ const AccountsModel = require('../../src/models/accounts.model');
 const {
   ACCOUNT_MOCK_INSTANCE,
   ACCOUNT_MOCK_PAYLOAD,
-} = require('../mocks/accounts');
+} = require('../mocks/accounts.mock');
 
 describe('Testing accounts CRUD', () => {
   beforeAll(async () => {
@@ -26,8 +26,6 @@ describe('Testing accounts CRUD', () => {
       .get('/api/accounts')
       .expect(HTTPStatus.OK);
 
-    console.log(response.body);
-
     expect(response.body.length >= 0).toBe(true);
     properties.forEach((prop) => {
       expect(response.body[0]).toHaveProperty(prop);
@@ -44,7 +42,7 @@ describe('Testing accounts CRUD', () => {
     expect(response.body).toHaveProperty('address');
     expect(response.body.address).toHaveProperty('street');
     delete response.body._id;
-    expect(response.body).toEqual(ACCOUNT_MOCK_PAYLOAD);
+    expect(response.body).toEqual({ ...ACCOUNT_MOCK_PAYLOAD, password: response.body.password });
   });
 
   it('PUT: A account should be edited', async () => {

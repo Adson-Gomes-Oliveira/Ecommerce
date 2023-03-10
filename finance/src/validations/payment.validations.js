@@ -25,6 +25,7 @@ const confirmPaymentValidation = (payload) => {
         street: JOI.string().required(),
         number: JOI.string().required(),
         cep: JOI.string().required(), // trocar para string
+        more_info: JOI.string().required(),
         city: JOI.string().required(),
         state: JOI.string().min(2).max(2).pattern(/^(AC|AL|AM|AP|BA|CE|DF|ES|GO|MA|MG|MS|MT|PA|PB|PE|PI|PR|RJ|RN|RO|RR|RS|SC|SE|SP|TO)$/)
           .required(),

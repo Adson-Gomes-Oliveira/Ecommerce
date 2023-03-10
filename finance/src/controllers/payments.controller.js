@@ -18,6 +18,8 @@ const findById = async (req, res) => {
 
 const create = async (req, res) => {
   const payload = req.body;
+  payload.expirationDate = new Date(payload.expirationDate);
+
   validate.payloadValidation(payload);
 
   const response = await Payments.create(payload);
